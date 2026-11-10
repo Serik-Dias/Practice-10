@@ -1,0 +1,79 @@
+
+ RUN  v3.2.7 <project>/smart-campus
+
+ × src/booking-regression.test.js > Practice 10 regression: malformed existing bookings fail closed > R3a NaN booking times is not reported as free 6ms
+   → expected true to be false // Object.is equality
+ × src/booking-regression.test.js > Practice 10 regression: malformed existing bookings fail closed > R3b missing booking end is not reported as free 1ms
+   → expected true to be false // Object.is equality
+ × src/booking-regression.test.js > Practice 10 regression: malformed existing bookings fail closed > R3c malformed booking next to a valid one is not reported as free 0ms
+   → expected true to be false // Object.is equality
+ ✓ src/booking-regression.test.js > Practice 10 regression: malformed existing bookings fail closed > R3d valid bookings keep the existing touching-endpoint rule 0ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI01 allows 11:00–12:00 and preserves the displayed booking 95ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI02 clears stale feedback and rejects a blocked room 59ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI03 gives clear feedback for a missing required time 31ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI04 explains an overlap 52ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI05 repeated checks never append bookings 28ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI06 rejects a duration exceeding two hours 53ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI07 supports the exact midnight endpoint 75ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI08 rejects an end later than midnight 61ms
+ ✓ src/feedback-priority.test.jsx > Preserves feedback priority: reversed interval before past start 99ms
+ ✓ src/feedback-priority.test.jsx > Preserves feedback priority: past start before duration and room block 24ms
+ ✓ src/feedback-priority.test.jsx > Preserves feedback priority: 121 minutes before room block 19ms
+ ✓ src/feedback-priority.test.jsx > Preserves feedback priority: room block before overlapping booking 22ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T01 touching after 1ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T02 starts now 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T03 zero duration 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T04 reversed interval 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T05 beyond day end 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T06 exactly 120 minutes 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T07 duration 121 minutes 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T08 touching before 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T09 partial overlap 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T10 contains existing booking 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T11 inside existing booking 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T12 identical interval 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T13 blocked room 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T14 empty bookings 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T16 starts in the past 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T17 exact day end 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T15 preserves original booking contents, order and object identities 1ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T18 negative start 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T19 missing start 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T20 infinite end 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T21 invalid supplied clock 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T22 overlap with a later array element 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T23 one minute gap 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T24 numeric string rejected 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T25 supports frozen caller data without writing 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T26 preserves data on each early rejection path 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/booking-regression.test.js > Practice 10 regression: malformed existing bookings fail closed > R3a NaN booking times is not reported as free
+ FAIL  src/booking-regression.test.js > Practice 10 regression: malformed existing bookings fail closed > R3b missing booking end is not reported as free
+ FAIL  src/booking-regression.test.js > Practice 10 regression: malformed existing bookings fail closed > R3c malformed booking next to a valid one is not reported as free
+AssertionError: expected true to be false // Object.is equality
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- false[39m
+[31m+ true[39m
+
+ ❯ src/booking-regression.test.js:12:47
+     10|     ['R3c malformed booking next to a valid one', [{ start: 900, end: …
+     11|   ])('%s is not reported as free', (_id, bookings) => {
+     12|     expect(canBook({ ...request, bookings })).toBe(false);
+       |                                               ^
+     13|   });
+     14|   it('R3d valid bookings keep the existing touching-endpoint rule', ()…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  3 failed | 39 passed (42)
+   Start at  23:04:25
+   Duration  2.75s (transform 106ms, setup 306ms, collect 128ms, tests 631ms, environment 968ms, prepare 168ms)
+
+EXIT=1

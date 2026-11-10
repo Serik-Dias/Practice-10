@@ -1,0 +1,26 @@
+# Task 06 — proposed patch to smart-campus/AGENTS.md
+# STATUS: DRAFT, NOT APPLIED. Waits for human approval.
+ # Smart Campus room availability
+ 
++Read this whole file before any edit.
++
+-A student checks ... The two existing test files cover the rules and form. ...
++A student checks ... The three existing test files cover the rules, the form and feedback priority. ...
+ 
+ ## Rules
+ ...
+ - AC6 preserves the labels, feedback wording and priority, and desktop and mobile layout.
++  Priority: invalid time > end not after start > start not after now > over 120 min > blocked > overlap.
++- AC1–AC6 are fixed. Do not weaken, delete or rewrite them or their tests.
+ ...
+ 
++## Boundaries
++- No secrets, API keys or real personal data in code, fixtures, tests, logs or commits.
++- No deployments, publishing, `git push`, or network calls beyond `npm ci`.
++- Do not edit the demo fixture (now 540, booking 600–660) unless asked.
++- Work on a separate branch or worktree; never commit to main.
++
++## Review gate
++- Run `npm test` and `npm run build` before proposing a change; paste the real output.
++- Never report a test as passed unless it ran. List any check not run.
++- Show the diff and wait for human approval before applying or merging.

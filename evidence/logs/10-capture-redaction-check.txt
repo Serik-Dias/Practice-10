@@ -1,0 +1,6 @@
+Captured UTC: 2026-11-10T18:04:58.807Z
+Command: npx vitest run --reporter=verbose 
+Node: v22.23.4
+
+0
+

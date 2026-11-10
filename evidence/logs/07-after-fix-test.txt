@@ -1,0 +1,52 @@
+
+ RUN  v3.2.7 <project>/smart-campus
+
+ ✓ src/booking-regression.test.js > Practice 10 regression: malformed existing bookings fail closed > R3a NaN booking times is not reported as free 1ms
+ ✓ src/booking-regression.test.js > Practice 10 regression: malformed existing bookings fail closed > R3b missing booking end is not reported as free 0ms
+ ✓ src/booking-regression.test.js > Practice 10 regression: malformed existing bookings fail closed > R3c malformed booking next to a valid one is not reported as free 0ms
+ ✓ src/booking-regression.test.js > Practice 10 regression: malformed existing bookings fail closed > R3d valid bookings keep the existing touching-endpoint rule 0ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI01 allows 11:00–12:00 and preserves the displayed booking 101ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI02 clears stale feedback and rejects a blocked room 67ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI03 gives clear feedback for a missing required time 39ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI04 explains an overlap 68ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI05 repeated checks never append bookings 28ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI06 rejects a duration exceeding two hours 70ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI07 supports the exact midnight endpoint 89ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI08 rejects an end later than midnight 59ms
+ ✓ src/feedback-priority.test.jsx > Preserves feedback priority: reversed interval before past start 108ms
+ ✓ src/feedback-priority.test.jsx > Preserves feedback priority: past start before duration and room block 27ms
+ ✓ src/feedback-priority.test.jsx > Preserves feedback priority: 121 minutes before room block 23ms
+ ✓ src/feedback-priority.test.jsx > Preserves feedback priority: room block before overlapping booking 19ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T01 touching after 1ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T02 starts now 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T03 zero duration 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T04 reversed interval 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T05 beyond day end 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T06 exactly 120 minutes 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T07 duration 121 minutes 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T08 touching before 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T09 partial overlap 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T10 contains existing booking 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T11 inside existing booking 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T12 identical interval 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T13 blocked room 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T14 empty bookings 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T16 starts in the past 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T17 exact day end 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T15 preserves original booking contents, order and object identities 1ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T18 negative start 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T19 missing start 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T20 infinite end 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T21 invalid supplied clock 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T22 overlap with a later array element 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T23 one minute gap 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T24 numeric string rejected 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T25 supports frozen caller data without writing 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T26 preserves data on each early rejection path 0ms
+
+ Test Files  4 passed (4)
+      Tests  42 passed (42)
+   Start at  23:04:37
+   Duration  2.96s (transform 71ms, setup 357ms, collect 116ms, tests 707ms, environment 1.01s, prepare 190ms)
+
+EXIT=0

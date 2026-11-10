@@ -1,0 +1,12 @@
+
+> smart-campus-practice08@1.0.0 evidence:replay
+> node scripts/replay.mjs
+
+clean-baseline: exit 0, expected 0; verified
+bug-a-failing: exit 1, expected 1; verified
+bug-a-fixed-target: exit 0, expected 0; verified
+bug-a-fixed-full: exit 0, expected 0; verified
+bug-b-failing: exit 1, expected 1; verified
+bug-b-fixed-target: exit 0, expected 0; verified
+bug-b-fixed-full: exit 0, expected 0; verified
+Original source was never modified. Replay logs: replay-output/

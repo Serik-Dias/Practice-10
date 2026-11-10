@@ -1,0 +1,51 @@
+
+> smart-campus-practice08@1.0.0 test
+> vitest run --reporter=verbose
+
+
+ RUN  v3.2.7 <project>/smart-campus
+
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T01 touching after 2ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T02 starts now 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T03 zero duration 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T04 reversed interval 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T05 beyond day end 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T06 exactly 120 minutes 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T07 duration 121 minutes 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T08 touching before 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T09 partial overlap 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T10 contains existing booking 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T11 inside existing booking 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T12 identical interval 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T13 blocked room 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T14 empty bookings 2ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T16 starts in the past 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T17 exact day end 0ms
+ ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T15 preserves original booking contents, order and object identities 1ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T18 negative start 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T19 missing start 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T20 infinite end 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T21 invalid supplied clock 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T22 overlap with a later array element 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T23 one minute gap 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T24 numeric string rejected 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T25 supports frozen caller data without writing 0ms
+ ✓ src/booking.test.js > Additional defensive and regression cases > T26 preserves data on each early rejection path 0ms
+ ✓ src/feedback-priority.test.jsx > Preserves feedback priority: reversed interval before past start 108ms
+ ✓ src/feedback-priority.test.jsx > Preserves feedback priority: past start before duration and room block 24ms
+ ✓ src/feedback-priority.test.jsx > Preserves feedback priority: 121 minutes before room block 24ms
+ ✓ src/feedback-priority.test.jsx > Preserves feedback priority: room block before overlapping booking 24ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI01 allows 11:00–12:00 and preserves the displayed booking 105ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI02 clears stale feedback and rejects a blocked room 77ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI03 gives clear feedback for a missing required time 30ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI04 explains an overlap 52ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI05 repeated checks never append bookings 27ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI06 rejects a duration exceeding two hours 42ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI07 supports the exact midnight endpoint 58ms
+ ✓ src/App.test.jsx > Real form and real booking logic integration > UI08 rejects an end later than midnight 38ms
+
+ Test Files  3 passed (3)
+      Tests  38 passed (38)
+   Start at  22:36:13
+   Duration  1.56s (transform 85ms, setup 588ms, collect 137ms, tests 619ms, environment 1.85s, prepare 201ms)
+

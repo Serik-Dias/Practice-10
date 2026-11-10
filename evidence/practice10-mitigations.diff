@@ -1,0 +1,109 @@
+diff -ruN -x node_modules -x dist -x .DS_Store -x replay-output a/README.md b/README.md
+--- a/README.md	2026-11-03 22:52:10.000000000 +0500
++++ b/README.md	2026-11-10 23:13:39.637497222 +0500
+@@ -1,5 +1,7 @@
+ # Smart Campus · Practice 09
+ 
++**Student:** Serik Dias · **ID:** 24B032021
++
+ ## Run from the source
+ 
+ Use Node.js 20.19 or newer. In the smart-campus folder run:
+@@ -23,5 +25,5 @@
+ 
+ The exercise continues the repaired Practice 08 project. The student selected a local ZIP on 3 November 2026. The implementation and comparison used Codex (GPT-6). The comparison took place at two checkpoints in one session. A Bolt-hosted demo and actual Bolt responses are outside this local export.
+ 
+-The submission slide labels the exercise Practice 09 but gives Practice 10 in its email subject example. Confirm the intended subject with the instructor if submitting by email, and supply your own name, ID and class day/time.
++The submission slide labels the exercise Practice 09 but gives Practice 10 in its email subject example. Confirm the intended subject with the instructor if submitting by email, and add the class day/time.
+ # Software-Engineering-
+diff -ruN -x node_modules -x dist -x .DS_Store -x replay-output a/REPORT.html b/REPORT.html
+--- a/REPORT.html	2026-11-03 22:52:10.000000000 +0500
++++ b/REPORT.html	2026-11-10 23:13:39.636879530 +0500
+@@ -1 +1 @@
+-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Practice 09 · Smart Campus</title><style>*{box-sizing:border-box}body{background:#f4f5ef;color:#173d35;font:16px/1.6 system-ui;margin:0}main{max-width:940px;margin:auto;padding:36px 24px}header{border-top:6px solid #32644d;padding-top:20px}h1{font-size:clamp(32px,6vw,54px);line-height:1.05;letter-spacing:-2px}h2{font-size:22px;margin-top:32px}small{letter-spacing:1px}section,figure{background:white;border:1px solid #d9e1d5;border-radius:12px;padding:18px;margin:16px 0}figure img{max-width:100%;max-height:400px;display:block;margin:auto}figure a{display:block}figcaption{font-size:14px;margin-top:10px}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #d9e1d5;vertical-align:top;overflow-wrap:anywhere}th{background:#e8eee4}a{color:#245b41}aside{display:flex;gap:16px}figure{flex:1}code{font-size:.9em}@media(max-width:650px){aside{display:block}}@media print{body{background:white}section,figure,tr{break-inside:avoid}}</style><main><header><small>SOFTWARE ENGINEERING · PRACTICE 09 · LOCAL EXPORT</small><h1>One booking decision,<br>one explanation.</h1><p>Room A-101 kept its original behavior after its validation rules moved to one place.</p><p><a href="SmartCampus.html">Open the working room checker</a> · <a href="smart-campus/AGENTS.md">Repository instructions</a> · <a href="evidence/experiment.md">Two prompts and local responses</a></p></header><h2>Inspection and design choice</h2><p>The form and the pure booking function each evaluated the same request. Extending the existing booking module lets one decision drive both availability and feedback.</p><section><strong>Pattern rationale</strong><p>In the repaired application, the booking module returned a Boolean while the form independently checked the same conditions to explain a rejection. Changing the maximum duration in only one place could therefore produce a correct decision with a misleading message. The refactor gives the existing pure module responsibility for selecting the first rejection reason. The form translates that reason into the same text students saw before, and existing callers still receive a Boolean from canBook. A request blocked for several reasons makes this separation observable because the first failure determines what the student sees. The fixtures all use start and end, and the checker has one booking policy. Both facts support keeping the design to one small module boundary.</p></section><h2>Verification</h2><p>The original project passed 34 tests. Before editing its implementation, four form tests were added to record the existing priority of validation messages. The same expanded suite passed all 38 tests before and after the refactor.</p><p>Run <code>npm test -- --reporter=verbose</code> inside <code>smart-campus</code>. See the <a href="evidence/01-before.txt">original run</a>, <a href="evidence/02-before-expanded.txt">expanded baseline</a>, <a href="evidence/03-after.txt">final run</a>, <a href="evidence/04-build.txt">production build</a> and <a href="evidence/05-replay.txt">mutation replay</a>.</p><table><thead><tr><th>Criterion</th><th>Coverage</th><th>Expected behavior</th></tr></thead><tbody><tr><td>AC1 · Time validity</td><td>T02–T05, T16–T21, T24</td><td>Past, starts-now, reversed, zero-length and out-of-day requests fail. A valid request may end at 1440.</td></tr><tr><td>AC2 · Duration</td><td>T06, T07, UI06</td><td>120 minutes is allowed. 121 minutes is rejected.</td></tr><tr><td>AC3 · Blocked room</td><td>T13, UI02</td><td>An otherwise free interval is unavailable when blocked.</td></tr><tr><td>AC4 · Intersections</td><td>T01, T08–T12, T14, T22</td><td>Both touching directions are available. Partial, contained, containing and identical intersections conflict.</td></tr><tr><td>AC5 · Preservation</td><td>T15, T25, T26, UI01, UI05</td><td>The existing array keeps its values, order and references. Repeated checks show a single scheduled booking.</td></tr><tr><td>AC6 · Feedback</td><td>UI01–UI08, four new priority cases, screenshots</td><td>Rejected requests keep their original explanations. Both tested viewport widths fit without horizontal overflow.</td></tr></tbody></table><h2>Browser comparison</h2><p>Both versions used the same 11:00–12:00 request immediately after the existing booking. The desktop check used the unblocked room. The mobile check used the blocked room. Captured result text and page widths matched across versions.</p><aside><figure><a href="evidence/screenshots/after-desktop.jpg"><img src="evidence/screenshots/after-desktop.jpg" alt="Desktop · 1280 px · Available"></a><figcaption>Desktop · 1280 px · Available · <a href="evidence/screenshots/before-desktop.jpg">Before</a></figcaption></figure><figure><a href="evidence/screenshots/after-mobile.jpg"><img src="evidence/screenshots/after-mobile.jpg" alt="Mobile · 390 px · Unavailable"></a><figcaption>Mobile · 390 px · Unavailable · <a href="evidence/screenshots/before-mobile.jpg">Before</a></figcaption></figure></aside><h2>Changed project files</h2><table><thead><tr><th>Path</th><th>Reason</th></tr></thead><tbody><tr><td>src/booking.js</td><td>bookingIssue returns the first rejection reason or null. canBook derives its Boolean from that single result.</td></tr><tr><td>src/App.jsx</td><td>The submit handler asks for one reason and selects the existing message. Form controls, fixture data and markup are preserved.</td></tr><tr><td>src/feedback-priority.test.jsx</td><td>Four new form tests pin the order of explanations when conditions compete. Both original test files are byte-identical to the baseline.</td></tr><tr><td>AGENTS.md</td><td>New root instructions describe the contract, project structure, scope and verification commands.</td></tr><tr><td>scripts/replay.mjs</td><td>Update the insertion point used by the previous practice’s deliberate mutation experiment. All seven replay stages were verified.</td></tr><tr><td>scripts/validate-package.mjs</td><td>Omitted from the new export. This old packaging helper checked Practice 08’s bug-detector skill and its submission folder.</td></tr></tbody></table><p><a href="evidence/practice08-to-09.diff">Full before/after source diff</a></p><h2>AI review and reflection</h2><p>Both local reviews recommended one rule module. Explicitly supplying AGENTS.md made the second response name the Boolean contract, exact commands and competing failures to test. The form now contains no duration or overlap calculation. The only supporting script change keeps the earlier mutation replay working. The supplied comparison uses the same Codex session, and the original Practice 08 footer remains visible because the exercise calls for preserving the UI.</p><p>The student selected a local ZIP. The two review responses are attributed to Codex, and the working demo opens from the extracted files. A hosted Bolt link and Bolt chat transcripts would require a separate Bolt session.</p></main></html>
+\ No newline at end of file
++<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Practice 09 · Smart Campus</title><style>*{box-sizing:border-box}body{background:#f4f5ef;color:#173d35;font:16px/1.6 system-ui;margin:0}main{max-width:940px;margin:auto;padding:36px 24px}header{border-top:6px solid #32644d;padding-top:20px}h1{font-size:clamp(32px,6vw,54px);line-height:1.05;letter-spacing:-2px}h2{font-size:22px;margin-top:32px}small{letter-spacing:1px}section,figure{background:white;border:1px solid #d9e1d5;border-radius:12px;padding:18px;margin:16px 0}figure img{max-width:100%;max-height:400px;display:block;margin:auto}figure a{display:block}figcaption{font-size:14px;margin-top:10px}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #d9e1d5;vertical-align:top;overflow-wrap:anywhere}th{background:#e8eee4}a{color:#245b41}aside{display:flex;gap:16px}figure{flex:1}code{font-size:.9em}@media(max-width:650px){aside{display:block}}@media print{body{background:white}section,figure,tr{break-inside:avoid}}</style><main><header><small>SOFTWARE ENGINEERING · PRACTICE 09 · LOCAL EXPORT</small><p><strong>Student:</strong> Serik Dias · <strong>ID:</strong> 24B032021</p><h1>One booking decision,<br>one explanation.</h1><p>Room A-101 kept its original behavior after its validation rules moved to one place.</p><p><a href="SmartCampus.html">Open the working room checker</a> · <a href="smart-campus/AGENTS.md">Repository instructions</a> · <a href="evidence/experiment.md">Two prompts and local responses</a></p></header><h2>Inspection and design choice</h2><p>The form and the pure booking function each evaluated the same request. Extending the existing booking module lets one decision drive both availability and feedback.</p><section><strong>Pattern rationale</strong><p>In the repaired application, the booking module returned a Boolean while the form independently checked the same conditions to explain a rejection. Changing the maximum duration in only one place could therefore produce a correct decision with a misleading message. The refactor gives the existing pure module responsibility for selecting the first rejection reason. The form translates that reason into the same text students saw before, and existing callers still receive a Boolean from canBook. A request blocked for several reasons makes this separation observable because the first failure determines what the student sees. The fixtures all use start and end, and the checker has one booking policy. Both facts support keeping the design to one small module boundary.</p></section><h2>Verification</h2><p>The original project passed 34 tests. Before editing its implementation, four form tests were added to record the existing priority of validation messages. The same expanded suite passed all 38 tests before and after the refactor.</p><p>Run <code>npm test -- --reporter=verbose</code> inside <code>smart-campus</code>. See the <a href="evidence/01-before.txt">original run</a>, <a href="evidence/02-before-expanded.txt">expanded baseline</a>, <a href="evidence/03-after.txt">final run</a>, <a href="evidence/04-build.txt">production build</a> and <a href="evidence/05-replay.txt">mutation replay</a>.</p><table><thead><tr><th>Criterion</th><th>Coverage</th><th>Expected behavior</th></tr></thead><tbody><tr><td>AC1 · Time validity</td><td>T02–T05, T16–T21, T24</td><td>Past, starts-now, reversed, zero-length and out-of-day requests fail. A valid request may end at 1440.</td></tr><tr><td>AC2 · Duration</td><td>T06, T07, UI06</td><td>120 minutes is allowed. 121 minutes is rejected.</td></tr><tr><td>AC3 · Blocked room</td><td>T13, UI02</td><td>An otherwise free interval is unavailable when blocked.</td></tr><tr><td>AC4 · Intersections</td><td>T01, T08–T12, T14, T22</td><td>Both touching directions are available. Partial, contained, containing and identical intersections conflict.</td></tr><tr><td>AC5 · Preservation</td><td>T15, T25, T26, UI01, UI05</td><td>The existing array keeps its values, order and references. Repeated checks show a single scheduled booking.</td></tr><tr><td>AC6 · Feedback</td><td>UI01–UI08, four new priority cases, screenshots</td><td>Rejected requests keep their original explanations. Both tested viewport widths fit without horizontal overflow.</td></tr></tbody></table><h2>Browser comparison</h2><p>Both versions used the same 11:00–12:00 request immediately after the existing booking. The desktop check used the unblocked room. The mobile check used the blocked room. Captured result text and page widths matched across versions.</p><aside><figure><a href="evidence/screenshots/after-desktop.jpg"><img src="evidence/screenshots/after-desktop.jpg" alt="Desktop · 1280 px · Available"></a><figcaption>Desktop · 1280 px · Available · <a href="evidence/screenshots/before-desktop.jpg">Before</a></figcaption></figure><figure><a href="evidence/screenshots/after-mobile.jpg"><img src="evidence/screenshots/after-mobile.jpg" alt="Mobile · 390 px · Unavailable"></a><figcaption>Mobile · 390 px · Unavailable · <a href="evidence/screenshots/before-mobile.jpg">Before</a></figcaption></figure></aside><h2>Changed project files</h2><table><thead><tr><th>Path</th><th>Reason</th></tr></thead><tbody><tr><td>src/booking.js</td><td>bookingIssue returns the first rejection reason or null. canBook derives its Boolean from that single result.</td></tr><tr><td>src/App.jsx</td><td>The submit handler asks for one reason and selects the existing message. Form controls, fixture data and markup are preserved.</td></tr><tr><td>src/feedback-priority.test.jsx</td><td>Four new form tests pin the order of explanations when conditions compete. Both original test files are byte-identical to the baseline.</td></tr><tr><td>AGENTS.md</td><td>New root instructions describe the contract, project structure, scope and verification commands.</td></tr><tr><td>scripts/replay.mjs</td><td>Update the insertion point used by the previous practice’s deliberate mutation experiment. All seven replay stages were verified.</td></tr><tr><td>scripts/validate-package.mjs</td><td>Omitted from the new export. This old packaging helper checked Practice 08’s bug-detector skill and its submission folder.</td></tr></tbody></table><p><a href="evidence/practice08-to-09.diff">Full before/after source diff</a></p><h2>AI review and reflection</h2><p>Both local reviews recommended one rule module. Explicitly supplying AGENTS.md made the second response name the Boolean contract, exact commands and competing failures to test. The form now contains no duration or overlap calculation. The only supporting script change keeps the earlier mutation replay working. The supplied comparison uses the same Codex session, and the original Practice 08 footer remains visible because the exercise calls for preserving the UI.</p><p>The student selected a local ZIP. The two review responses are attributed to Codex, and the working demo opens from the extracted files. A hosted Bolt link and Bolt chat transcripts would require a separate Bolt session.</p></main></html>
+\ No newline at end of file
+diff -ruN -x node_modules -x dist -x .DS_Store -x replay-output a/evidence/01-before.txt b/evidence/01-before.txt
+--- a/evidence/01-before.txt	2026-11-03 22:52:10.000000000 +0500
++++ b/evidence/01-before.txt	2026-11-10 23:04:37.248137019 +0500
+@@ -3,7 +3,7 @@
+ > vitest run --reporter=verbose
+ 
+ 
+- RUN  v3.2.7 <redacted-local-path>/smart-campus
++ RUN  v3.2.7 <project>/smart-campus
+ 
+  ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T01 touching after 1ms
+  ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T02 starts now 0ms
+diff -ruN -x node_modules -x dist -x .DS_Store -x replay-output a/evidence/02-before-expanded.txt b/evidence/02-before-expanded.txt
+--- a/evidence/02-before-expanded.txt	2026-11-03 22:52:10.000000000 +0500
++++ b/evidence/02-before-expanded.txt	2026-11-10 23:04:37.248421686 +0500
+@@ -3,7 +3,7 @@
+ > vitest run --reporter=verbose
+ 
+ 
+- RUN  v3.2.7 <redacted-local-path>/smart-campus
++ RUN  v3.2.7 <project>/smart-campus
+ 
+  ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T01 touching after 2ms
+  ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T02 starts now 0ms
+diff -ruN -x node_modules -x dist -x .DS_Store -x replay-output a/evidence/03-after.txt b/evidence/03-after.txt
+--- a/evidence/03-after.txt	2026-11-03 22:52:10.000000000 +0500
++++ b/evidence/03-after.txt	2026-11-10 23:04:37.247750302 +0500
+@@ -3,7 +3,7 @@
+ > vitest run --reporter=verbose
+ 
+ 
+- RUN  v3.2.7 <redacted-local-path>/smart-campus
++ RUN  v3.2.7 <project>/smart-campus
+ 
+  ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T01 touching after 1ms
+  ✓ src/booking.test.js > Lesson 07 reconstructed baseline: exact Boolean decisions > T02 starts now 0ms
+diff -ruN -x node_modules -x dist -x .DS_Store -x replay-output a/smart-campus/scripts/capture.mjs b/smart-campus/scripts/capture.mjs
+--- a/smart-campus/scripts/capture.mjs	2026-11-03 22:52:10.000000000 +0500
++++ b/smart-campus/scripts/capture.mjs	2026-11-10 23:04:37.234183108 +0500
+@@ -6,7 +6,9 @@
+ const dir = path.resolve('../evidence/logs');
+ mkdirSync(dir, { recursive: true });
+ const run = spawnSync(process.execPath, ['node_modules/vitest/vitest.mjs', 'run', '--reporter=verbose', ...args], { encoding: 'utf8', env: { ...process.env, NO_COLOR: '1', FORCE_COLOR: '0' } });
+-const text = `Captured UTC: ${new Date().toISOString()}\nCommand: npx vitest run --reporter=verbose ${args.join(' ')}\nNode: ${process.version}\n\n${run.stdout || ''}${run.stderr || ''}\nEXIT_CODE=${run.status}\n`;
++// Do not publish local usernames or absolute paths in evidence logs.
++const redact = value => (value || '').replaceAll(process.cwd(), '<project>/smart-campus');
++const text = `Captured UTC: ${new Date().toISOString()}\nCommand: npx vitest run --reporter=verbose ${args.join(' ')}\nNode: ${process.version}\n\n${redact(run.stdout)}${redact(run.stderr)}\nEXIT_CODE=${run.status}\n`;
+ writeFileSync(path.join(dir, name + '.txt'), text);
+ console.log(text);
+ process.exitCode = run.status ?? 1;
+diff -ruN -x node_modules -x dist -x .DS_Store -x replay-output a/smart-campus/src/booking-regression.test.js b/smart-campus/src/booking-regression.test.js
+--- a/smart-campus/src/booking-regression.test.js	1970-01-01 05:00:00.000000000 +0500
++++ b/smart-campus/src/booking-regression.test.js	2026-11-10 23:04:25.230959578 +0500
+@@ -0,0 +1,17 @@
++import { describe, expect, it } from 'vitest';
++import { canBook } from './booking.js';
++
++const request = { start: 630, end: 690, now: 540, blocked: false };
++
++describe('Practice 10 regression: malformed existing bookings fail closed', () => {
++  it.each([
++    ['R3a NaN booking times', [{ start: NaN, end: NaN }]],
++    ['R3b missing booking end', [{ start: 600 }]],
++    ['R3c malformed booking next to a valid one', [{ start: 900, end: 960 }, { start: 700, end: NaN }]],
++  ])('%s is not reported as free', (_id, bookings) => {
++    expect(canBook({ ...request, bookings })).toBe(false);
++  });
++  it('R3d valid bookings keep the existing touching-endpoint rule', () => {
++    expect(canBook({ ...request, start: 660, end: 720, bookings: [{ start: 600, end: 660 }] })).toBe(true);
++  });
++});
+diff -ruN -x node_modules -x dist -x .DS_Store -x replay-output a/smart-campus/src/booking.js b/smart-campus/src/booking.js
+--- a/smart-campus/src/booking.js	2026-11-03 22:52:10.000000000 +0500
++++ b/smart-campus/src/booking.js	2026-11-10 23:04:37.233838648 +0500
+@@ -6,6 +6,8 @@
+   if (start <= now) return 'past';
+   if (end - start > 120) return 'duration';
+   if (blocked) return 'blocked';
++  // Malformed existing data must not make the room look free (fail closed).
++  if (!bookings.every(b => Number.isFinite(b.start) && Number.isFinite(b.end))) return 'invalidTime';
+ 
+   // Intervals are [start, end), so equality at either endpoint is allowed.
+   if (bookings.some(booking => start < booking.end && end > booking.start)) {

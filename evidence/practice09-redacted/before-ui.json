@@ -1,0 +1,16 @@
+[
+  {
+    "label": "desktop",
+    "blocked": false,
+    "status": "✓\nAvailable\n\n11:00–12:00 is free. This check does not create a booking.",
+    "contentWidth": 1280,
+    "width": 1280
+  },
+  {
+    "label": "mobile",
+    "blocked": true,
+    "status": "!\nUnavailable\n\nRoom A-101 is blocked. Turn off the demo block to check it.",
+    "contentWidth": 390,
+    "width": 390
+  }
+]
